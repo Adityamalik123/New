@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+    	<!-- meta charec set -->
+        <meta charset="utf-8">
+		<!-- Always force latest IE rendering engine or request Chrome Frame -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Page Title -->
+        <title>Camelot Wellness</title>		
+		<!-- Meta Description -->
+        <meta name="description" content="Blue One Page Creative HTML5 Template">
+        <meta name="keywords" content="one page, single page, onepage, responsive, parallax, creative, business, html5, css3, css3 animation">
+       
+		<!-- Mobile Specific Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- Google Font -->
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+		<!-- CSS
+		================================================== --
+		<!-- Twitter Bootstrap css -->
+        <link rel="stylesheet" href="{{url_for('static', filename="assetsmain1/css/bootstrap.min.css")}}">
+		<!-- Main Stylesheet -->
+        <link rel="stylesheet" href="{{url_for('static', filename="assetsmain1/css/main.css")}}">
+         <!--Theme custom css -->
+        <link rel="stylesheet" href="{{url_for('static', filename = "assetsad/css/style.css")}}">
+		<!-- Modernizer Script for old Browsers -->
+        <script src="{{url_for('static', filename="assetsmain1/js/modernizr-2.6.2.min.js")}}"></script>
+
+    </head>
+	
+    <body id="body">
+	
+		<!-- preloader -->
+		<div id="preloader">
+			<img src="{{url_for('static', filename="assetsmain1/img/preloader.gif")}}" alt="Preloader">
+		</div>
+		<!-- end preloader -->
+
+        <!-- 
+        Fixed Navigation
+        ==================================== -->
+        <header id="navigation" class="navbar-fixed-top navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-bars fa-2x"></i>
+                    </button>
+					<!-- /responsive nav button -->
+					
+					<!-- logo -->
+                    <a class="navbar-brand" href="#slider">
+						<h1 id="logo">
+							<img src="{{url_for('static', filename="assetsmain/img/logo.png")}}" alt="Brandi">
+						</h1>
+					</a>
+					<!-- /logo -->
+                </div>
+
+				<!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <ul id="nav" class="nav navbar-nav">
+                        <li><a href="#slider" class="current">Home</a></li>
+                        <li><a href="#about" class="current">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        
+
+                    </ul>
+                    <ul class="nav navbar-nav">
+                    {% if user and not user.mverifies %}
+                        <li><a href="{{url_for('otp')}}">Verify Mobile</a></li>
+                        {% endif %}
+                        {% if user %}
+                        <li><a href="{{url_for('book')}}">Booking</a></li>
+                        {% endif %}
+                        {% if not user %}
+                         <li><a href="{{url_for('login')}}" target="_top">Sign In</a></li>
+                         <li><a href="{{url_for('register')}}" target="_top">Sign Up</a></li>
+                         {% endif %}
+                         {% if user %}
+                         <li><a href="{{url_for('profile')}}">Profile</a></li>
+                        <li><a href="{{url_for('logout')}}">Logout</a></li>
+                        {% endif %}
+                        </ul>
+                </nav>
+				<!-- /main nav -->
+				
+            </div>
+            
+        </header>
+        <!--
+        End Fixed Navigation
+        ==================================== -->
+		
+		
+		
+        <!--
+        Home Slider
+        ==================================== -->
+		
+		<section id="slider">
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			
+				<!-- Indicators bullet -->
+				<ol class="carousel-indicators">
+					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				</ol>
+				<!-- End Indicators bullet -->				
+				
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+					
+					<!-- single slide -->
+					<div class="item active" style="background-image: url(static/assetsmain1/img/bannerfirst.jpg);">
+						<div class="carousel-caption">
+							<h2 data-wow-duration="700ms" data-wow-delay="500ms" class="wow bounceInDown animated"><span style="color:black;"> Hello!</span></h2>
+							<h3 data-wow-duration="1000ms" class="wow slideInLeft animated"><span style="color:black;"><b>Welcome To </span> <span class="color">Camelot Wellness</b></span></h3>
+							<h4 data-wow-duration="1000ms" class="wow slideInRight animated"><span style="color: black;"><b>Fitness Solutions $ your Happiness Booster</b></span></h4>
+							
+							
+							<ul class="social-links text-center">
+								<li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
+								<li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus fa-lg"></i></a></li>
+								<li><a href=""><i class="fa fa-dribbble fa-lg"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- end single slide -->
+
+					
+				
+				</div>
+				<!-- End Wrapper for slides -->
+				
+			</div>
+		</section>
+		
+        <!--
+        End Home SliderEnd
+        ==================================== -->
+
+
+            <!--Portfolio Section-->
+            <section id="admin_center" class="portfolio lightbg">
+                <div class="container">
+                    <div class="row">
+                        <div class="main_portfolio roomy-100">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="head_title text-center">
+                                    <h2>Admin Center</h2>
+                                    <div class="separator_auto"></div>
+                                    <p>Select one of the following options to control -</p>
+                                </div>
+                            </div>
+
+                            <div class="portfolio_content">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-3 m-top-30">
+                                            <div class="portfolio_item portfolio_item2">
+                                                <img src="{{url_for('static', filename = "assetsad/images/Portfolio/1.jpg")}}" alt="" />
+                                                <div class="portfolio_hover text-center">
+                                                    <h6 class="text-uppercase text-white">Company Panel</h6>
+                                                    <p class=" text-white">Lorem ipsum dolor sit amet</p>
+                                                    <div class="portfolio_hover_icon">
+                                                        <a href="{{url_for('static', filename = "assetsad/images/Portfolio/1.jpg")}}" class="popup-img"></a>
+                                                        <a href="{{url_for('companyControl')}}"><i class="fa fa-folder-open-o"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 m-top-30">
+                                            <div class="portfolio_item portfolio_item2">
+                                                <img src="{{url_for('static', filename = "assetsad/images/Portfolio/2.jpg")}}" alt="" />
+                                                <div class="portfolio_hover text-center">
+                                                    <h6 class="text-uppercase text-white">Services Panel</h6>
+                                                    <p class=" text-white">Lorem ipsum dolor sit amet</p>
+                                                    <div class="portfolio_hover_icon">
+                                                        <a href="{{url_for('static', filename = "assetsad/images/Portfolio/2.jpg")}}" class="popup-img"></a>
+                                                        <a href="{{url_for('servicesControl')}}"><i class="fa fa-folder-open-o"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                </div>
+
+                                <div class="col-md-3 m-top-30">
+                                    <div class="portfolio_item portfolio_item2">
+                                        <img src="{{url_for('static', filename = "assetsad/images/Portfolio/3.jpg")}}" alt="" />
+                                        <div class="portfolio_hover text-center">
+                                            <h6 class="text-uppercase text-white">USers Panel</h6>
+                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
+                                            <div class="portfolio_hover_icon">
+                                                <a href="{{url_for('static', filename = "assetsad/images/Portfolio/3.jpg")}}" class="popup-img"></a>
+                                                <a href="{{url_for('usersPanel')}}"><i class="fa fa-folder-open-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="col-md-3 m-top-30">
+                                            <div class="portfolio_item portfolio_item2">
+                                                <img src="{{url_for('static', filename = "assetsad/images/Portfolio/4.jpg")}}" alt="" />
+                                                <div class="portfolio_hover text-center">
+                                                    <h6 class="text-uppercase text-white">Testimonials Consideration</h6>
+                                                    <p class=" text-white">Lorem ipsum dolor sit amet</p>
+                                                    <div class="portfolio_hover_icon">
+                                                        <a href="{{url_for('static', filename = "assetsad/images/Portfolio/4.jpg")}}" class="popup-img"></a>
+                                                        <a href="{{url_for('testimonialControl')}}"><i class="fa fa-folder-open-o"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 m-top-30">
+                                            <div class="portfolio_item portfolio_item2">
+                                                <img src="{{url_for('static', filename = "assetsad/images/Portfolio/5.jpg")}}" alt="" />
+                                                <div class="portfolio_hover text-center">
+                                                    <h6 class="text-uppercase text-white">Booking Management</h6>
+                                                    <p class=" text-white">Lorem ipsum dolor sit amet</p>
+                                                    <div class="portfolio_hover_icon">
+                                                        <a href="{{url_for('static', filename = "assetsad/images/Portfolio/5.jpg")}}" class="popup-img"></a>
+                                                        <a href=""><i class="fa fa-folder-open-o"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                </div>
+
+                                <div class="col-md-3 m-top-30">
+                                    <div class="portfolio_item portfolio_item2">
+                                        <img src="{{url_for('static', filename = "assetsad/images/Portfolio/6.jpg")}}" alt="" />
+                                        <div class="portfolio_hover text-center">
+                                            <h6 class="text-uppercase text-white">Feedback Panel</h6>
+                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
+                                            <div class="portfolio_hover_icon">
+                                                <a href="{{url_for('static', filename = "assetsad/images/Portfolio/6.jpg")}}" class="popup-img"></a>
+                                                <a href=""><i class="fa fa-folder-open-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 m-top-30">
+                                    <div class="portfolio_item portfolio_item2">
+                                        <img src="{{url_for('static', filename = "assetsad/images/Portfolio/7.jpg")}}" alt="" />
+                                        <div class="portfolio_hover text-center">
+                                            <h6 class="text-uppercase text-white">Contact Us Requests</h6>
+                                            <p class=" text-white">Lorem ipsum dolor sit amet</p>
+                                            <div class="portfolio_hover_icon">
+                                                <a href="{{url_for('static', filename = "assetsad/images/Portfolio/7.jpg")}}" class="popup-img"></a>
+                                                <a href="{{url_for('contactRequests')}}"><i class="fa fa-folder-open-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    </div>
+                                    </div>
+                                    </div>
+
+
+                                    </div>
+                                    </div>
+                                    </div>        
+
+                        </div>
+                    </div><!--End off row -->
+                </div><!--End off container -->
+            </section><!-- End off Portfolio section-->
+
+                   
+			<footer id="footer" class="footer">
+			<div class="container">
+<ul class="social-links text-center">
+								<li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
+								<li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus fa-lg"></i></a></li>
+								<li><a href=""><i class="fa fa-dribbble fa-lg"></i></a></li> 
+							</ul>
+			</div>
+		</footer>   
+		<!-- Essential jQuery Plugins
+		================================================== -->
+		<!-- Main jQuery -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery-1.11.1.min.js")}}"></script>
+		<!-- Single Page Nav -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery.singlePageNav.min.js")}}"></script>
+		<!-- Twitter Bootstrap -->
+        <script src="{{url_for('static', filename="assetsmain/js/bootstrap.min.js")}}"></script>
+		<!-- jquery.fancybox.pack -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery.fancybox.pack.js")}}"></script>
+		<!-- jquery.mixitup.min -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery.mixitup.min.js")}}"></script>
+		<!-- jquery.parallax -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery.parallax-1.1.3.js")}}"></script>
+		<!-- jquery.countTo -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery-countTo.js")}}"></script>
+		<!-- jquery.appear -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery.appear.js")}}"></script>
+		<!-- Contact form validation -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
+		<!-- Google Map -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<!-- jquery easing -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery.easing.min.js")}}"></script>
+		<!-- jquery easing -->
+        <script src="{{url_for('static', filename="assetsmain/js/wow.min.js")}}"></script>
+		<script>
+			var wow = new WOW ({
+				boxClass:     'wow',      // animated element css class (default is wow)
+				animateClass: 'animated', // animation css class (default is animated)
+				offset:       120,          // distance to the element when triggering the animation (default is 0)
+				mobile:       false,       // trigger animations on mobile devices (default is true)
+				live:         true        // act on asynchronously loaded content (default is true)
+			  }
+			);
+			wow.init();
+		</script> 
+		<!-- Custom Functions -->
+        <script src="{{url_for('static', filename="assetsmain/js/custom.js")}}"></script>
+		
+		
+		<script>
+       function onSubmit(token) {
+         document.getElementById("demo-form").submit();
+       }
+       </script>
+    </body>
+</html>

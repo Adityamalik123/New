@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block after %}
+
+
+    <!--
+        Contact Us
+        ==================================== -->    
+    
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="row mb50">
+        
+          <div class="sec-title text-center mb50 wow fadeInDown animated" data-wow-duration="500ms">
+            <h2>Sign Up</h2>
+            <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
+          </div>
+          
+          <!-- contact form -->
+          <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="300ms">
+            <div class="contact-form">
+              <h3>Are you ready to join the elite?</h3>
+              <form action="{{url_for('register')}}" method="POST" id="contact-form">
+                <div class="input-group name-email">
+                  
+                  <div class="input-field">
+                    <input type="text" name="name" placeholder="Name" class="form-control">
+                  </div>
+
+                  <div class="input-field">
+                    <input type="email" name="email" placeholder="Email" class="form-control">
+                  </div>
+                  </div>
+                  
+                <div class="input-group name-email">
+                  
+                  <div class="input-field">
+                    <input type="text" name="contact" placeholder="Contact No." class="form-control">
+                  </div>
+
+                   <div class="input-field">
+                    <select name="company" class="form-control">
+                        <option selected disabled class="form-control">Company</option class="form-control">
+                    {% for c in comp %}
+                    
+                    <option class="form-control" value={{c.id}}>{{ c.name }}</option>
+                    
+                    {% endfor %}
+                  </select>
+                  </div>
+                  </div>
+                  <div class="input-group name-email">
+                  <div class="input-field">
+                    <input type="password" name="password" id="password" placeholder="Password" class="form-control">
+                  </div>
+                  <div class="input-field">
+                    <input type="password" name="Cnfpassword" placeholder="Confirm Password" class="form-control">
+                  </div>
+
+                </div>
+                <div class="input-group name-email">
+                  <input type="submit" id="form1-submit" class="form-control" value="Sign Up" style="color: #0eb493;">
+                  <a href="/#contact"><p style="color: #0eb493;padding: 12px;">Contact us <span style="color: #062033;">first if your company isn't registered with us</span></p></a>
+                </div>
+                {% if error %}
+                <p style="color: #ff0000;padding: 12px;">*{{error}}</p>
+                {% endif %}
+
+
+                
+
+              </form>
+                            
+            </div>
+                                <center><strong><ul id="aditya"></ul></strong></center>
+          </div>
+          <div>
+            </br>
+          </div>
+          <!-- end contact form -->
+          
+          <!-- contact address -->
+          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 wow fadeInLeft animated" data-wow-duration="500ms">
+            <div class="contact-address">
+              <center><h3>Already a member ??</h3></center>
+              <span class="sec-title text-center mb50 wow fadeInDown animated" data-wow-duration="500ms">
+              <a href="{{url_for('login')}}"><h3>Sign In</h3></a>
+              </span>
+            </div>
+          </div>
+          <!-- end contact address -->
+          
+          
+        </div>
+      </div>
+      
+    </section>
+    
+        <!--
+        End Contact Us
+        ==================================== -->
+        {% endblock %}
+
+    {% block script %}
+    
+    <script type="text/javascript">
+      $(function(){
+        /* ========================================================================= */
+        /*  Contact Form
+        /* ========================================================================= */
+        $.validator.addMethod("regx", function(value, element, regexpr) {          
+return regexpr.test(value);
+},);
+
+        $('#contact-form').validate({
+          rules: {
+            name: {
+              required: true,
+              minlength: 3
+            },
+            contact: {
+              required: true, 
+              regx:/^(?![8]{10}|[9]{10})[7-9]{1}[0-9]{9}$/,
+              minlength: 10,
+              maxlength: 10
+            },
+            password: {
+              required: true,
+              minlength: 6
+            },
+             Cnfpassword : {
+              required: true,
+                        equalTo : "#password"
+                      },
+
+            company: "required",
+
+            email: {
+              required: true,
+              email: true
+            },
+          },
+          messages: {
+            name: {
+              required: "come on, you have a name don't you?",
+              minlength: "your name must consist of at least 3 characters"
+            },
+            company: {
+              required: "come on, you work for a Company don't you?"
+            },
+            contact: {
+              required: "please enter a contact number",
+              regx: "Digits only (Don't include Country Code)",
+              minlength: "your number must consist of 10 digits",
+              maxlength: "your number must consist of 10 digits"
+            },
+            password: {
+              required: "come on, enter your password.. Its secret",
+              minlength: "your password must consist of at least 6 characters"
+            },
+            email: {
+              required: "no email, no entry"
+            },
+            message: {
+              required: "um...yea, you have to write something to send this form.",
+              minlength: "thats all? really?"
+            },
+            Cnfpassword : {
+              required: "Confirm your password please",
+                        equalTo : "Doesn't Match"
+                      },
+          },
+        
+          });
+      });
+    </script>
+{% endblock %}

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+      <!-- meta charec set -->
+        <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- Page Title -->
+        <title>Verify OTP</title>    
+        <link rel="icon" type="image/png" href="{{url_for('static', filename = "assetsmain/favicon.ico")}}">
+    <!-- Meta Description -->
+        <meta name="description" content="Blue One Page Creative HTML5 Template">
+        <meta name="keywords" content="one page, single page, onepage, responsive, parallax, creative, business, html5, css3, css3 animation">
+        <meta name="author" content="Muhammad Morshed">
+    <!-- Mobile Specific Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Google Font -->
+    
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- CSS
+    ================================================== -->
+    <!-- Fontawesome Icon font -->
+        <link rel="stylesheet" href="{{url_for('static', filename="assetsmain/css/font-awesome.min.css")}}">
+    <!-- Twitter Bootstrap css -->
+        <link rel="stylesheet" href="{{url_for('static', filename="assetsmain/css/bootstrap.min.css")}}">
+    <!-- jquery.fancybox  -->
+        <link rel="stylesheet" href="{{url_for('static', filename="assetsmain/css/jquery.fancybox.css")}}">
+    <!-- animate -->
+        <link rel="stylesheet" href="{{url_for('static', filename="assetsmain/css/animate.css")}}">
+    <!-- Main Stylesheet -->
+        <link rel="stylesheet" href="{{url_for('static', filename="assetsmain/css/main.css")}}">
+    <!-- media-queries -->
+        <link rel="stylesheet" href="{{url_for('static', filename="assetsmain/css/media-queries.css")}}">
+
+    <!-- Modernizer Script for old Browsers -->
+        <script src="{{url_for('static', filename="assetsmain/js/modernizr-2.6.2.min.js")}}"></script>
+
+    </head>
+  
+    <body id="body">
+  
+    <!-- preloader -->
+    <div id="preloader">
+      <img src="{{url_for('static', filename="assetsmain/img/preloader.gif")}}" alt="Preloader">
+    </div>
+    <!-- end preloader -->
+
+        <!-- 
+        Fixed Navigation
+        ==================================== -->
+        <header id="navigation" class="navbar-fixed-top navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-bars fa-2x"></i>
+                    </button>
+          <!-- /responsive nav button -->
+          
+          <!-- logo -->
+                    <a class="navbar-brand" href="{{url_for('index')}}">
+            <h1 id="logo">
+              <img src="{{url_for('static', filename="assetsmain/img/logo.png")}}" alt="Brandi">
+            </h1>
+          </a>
+          <!-- /logo -->
+                </div>
+
+        <!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/#slider" class="current">Home</a></li>
+                         <li><a href="/#contact">Contact</a></li>
+                       
+                        
+                        
+
+                    </ul>
+                    <ul class="nav navbar-nav">
+                    {% if user and not user.mverifies %}
+                        <li><a href="{{url_for('otp')}}">Verify Mobile</a></li>
+                        {% endif %}
+                        {% if not user %}
+                         <li><a href="{{url_for('login')}}" class="current" target="_top">Sign In</a></li>
+                         <li><a href="{{url_for('register')}}" target="_top">Sign Up</a></li>
+                         {% endif %}
+                         {% if user %}
+                         <li><a href="{{url_for('profile')}}">Profile</a></li>
+                        <li><a href="{{url_for('logout')}}">Logout</a></li>
+                        {% endif %}
+                        </ul>
+                </nav>
+        <!-- /main nav -->
+        
+            </div>
+            
+        </header>
+        <!--
+        End Fixed Navigation
+        ==================================== -->
+    
+
+
+    <!--
+        Contact Us
+        ==================================== -->    
+    
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="row mb50">
+        
+          <div class="sec-title text-center mb50 wow fadeInDown animated" data-wow-duration="500ms">
+            <h2>Contact Verification</h2>
+            <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
+          </div>
+          
+          <!-- contact form -->
+          <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="300ms">
+            <div class="contact-form">
+              <h3>Verify OTP</h3>
+              <form action="{{url_for('otp')}}" method="POST" id="contact-form">
+                <div class="input-group name-email">
+                  
+                  <div class="input-field">
+                    <input type="password" name="otp" placeholder="One Time Password" class="form-control">
+                  </div>
+                  </div>
+                <div class="input-group name-email">
+                  <input type="submit" id="form1-submit" class="form-control" value="Verify" style="color: #0eb493;">
+
+                  
+                {% if error %}
+                <p style="color: #ff0000;padding: 12px;">*Incorrect One Time Password</p>
+                {% endif %}
+
+
+                
+
+              </form>
+              {% if not error %}
+              <form id="getotp" method="POST" >
+                  <input type="submit" id="form1-submit" class="form-control" name="otp" style="color: #0eb493;padding: 12px;" value="Get OTP">
+                  </form>
+                  {% endif %}
+                  </div>
+                            
+            </div>
+                                <strong><il id="aditya"></li></strong>
+          </div>
+          <div>
+            </br>
+          </div>
+          <!-- end contact form -->
+          
+          <!-- contact address -->
+          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 wow fadeInLeft animated" data-wow-duration="500ms">
+            <div class="contact-address">
+              <center><h3>Wan't to verify later ??</h3></center>
+              <span class="sec-title text-center mb50 wow fadeInDown animated" data-wow-duration="500ms">
+              <a href="{{url_for('index')}}"><h3>Skip Verification</h3></a>
+              </span>
+            </div>
+          </div>
+          <!-- end contact address -->
+          
+          
+        </div>
+      </div>
+      
+    </section>
+    
+        <!--
+        End Contact Us
+        ==================================== -->
+
+  
+        <footer id="footer" class="footer">
+      <div class="container">
+        <div class="row">
+        
+          <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="500ms">
+            <div class="footer-single">
+              <img src="{{url_for('static', filename="assetsmain/img/footer-logo.png")}}" alt="">
+              <p>Bringing Happiness to Work with our refreshing concept aimed to increase the productivity of the employees and mitigate the ever-increasing health issues.</p>
+            </div>
+          </div>
+        
+          <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
+            <div class="footer-single">
+              <h6>Subscribe </h6>
+              <form action="/Subscribe" class="subscribe" method="POST">
+                <input type="text" name="subscribe" id="subscribe">
+                <input type="submit" value="&#8594;" id="subs">
+              </form>
+              <p>Get updated with our new Services and Newsletters</p>
+            </div>
+          </div>
+        
+          <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="600ms">
+            <div class="footer-single">
+              <h6>Explore</h6>
+              <ul>
+                <li><a href="/#slider">Inside Us</a></li>
+                <li><a href="https://www.google.co.in/search?rlz=1C1CHBF_enIN716IN718&q=Camelotgroup.in&oq=Camelotgroup.in&gs_l=psy-ab.3...4479.5014.0.5283.3.3.0.0.0.0.193.491.0j3.3.0....0...1.1.64.psy-ab..0.2.343...0j0i30k1j0i10i30k1j0i5i10i30k1j0i13i30k1.NTkKkLXdps8">Google</a></li>
+              </ul>
+            </div>
+          </div>
+        
+          <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="900ms">
+            <div class="footer-single">
+              <h6>Support</h6>
+              <ul>
+                <li><a href="/#contact">Contact Us</a></li>
+                <li><a href="/Feedback">Feedback</a></li>
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="copyright text-center">
+            <a href="http://themefisher.com" target="_blank">- </a>
+              Copyright © 2017 <a href="https://www.camelotgroup.in/">Camelot Group</a>. All rights reserved. Designed & developed by <a href="http://www.adityam.xyz/">Revacion</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <a href="javascript:void(0);" id="back-top"><i class="fa fa-angle-up fa-3x"></i></a>
+    <!-- Essential jQuery Plugins
+    ================================================== -->
+    <!-- Main jQuery -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery-1.11.1.min.js")}}"></script>
+    <!-- Single Page Nav -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery.singlePageNav.min.js")}}"></script>
+    <!-- Twitter Bootstrap -->
+        <script src="{{url_for('static', filename="assetsmain/js/bootstrap.min.js")}}"></script>
+    <!-- jquery.fancybox.pack -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery.fancybox.pack.js")}}"></script>
+    <!-- jquery.mixitup.min -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery.mixitup.min.js")}}"></script>
+    <!-- jquery.parallax -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery.parallax-1.1.3.js")}}"></script>
+    <!-- jquery.countTo -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery-countTo.js")}}"></script>
+    <!-- jquery.appear -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery.appear.js")}}"></script>
+    <!-- Contact form validation -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
+    <!-- Google Map -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <!-- jquery easing -->
+        <script src="{{url_for('static', filename="assetsmain/js/jquery.easing.min.js")}}"></script>
+    <!-- jquery easing -->
+        <script src="{{url_for('static', filename="assetsmain/js/wow.min.js")}}"></script>
+    <script>
+      var wow = new WOW ({
+        boxClass:     'wow',      // animated element css class (default is wow)
+        animateClass: 'animated', // animation css class (default is animated)
+        offset:       120,          // distance to the element when triggering the animation (default is 0)
+        mobile:       false,       // trigger animations on mobile devices (default is true)
+        live:         true        // act on asynchronously loaded content (default is true)
+        }
+      );
+      wow.init();
+    </script> 
+    <!-- Custom Functions -->
+        <script src="{{url_for('static', filename="assetsmain/js/custom.js")}}"></script>
+    
+    <script type="text/javascript">
+      $(function(){
+        /* ========================================================================= */
+        /*  Contact Form
+        /* ========================================================================= */
+        
+        $('#getotp').validate({
+          submitHandler: function(form) {
+            $(form).ajaxSubmit({
+              type:"POST",
+              data: $(form).serialize(),
+              url:"/getotp",
+              success: function() {
+                  $('#getotp').hide();
+                  $('#aditya').append('OTP Sent');
+                                
+              },
+              error: function() {
+                
+
+                                
+
+              }
+            });
+          }
+        
+          });
+      });
+    </script>
+     <script type="text/javascript">
+      $(function(){
+        /* ========================================================================= */
+        /*  Contact Form
+        /* ========================================================================= */
+        
+       $('#contact-form').validate({
+          rules: {
+            otp: {
+              required: true,
+            }
+          },
+          messages: {
+            otp: {
+              required: "Please enter the OTP sent on your number"
+            }
+          },
+        });
+      });
+    </script>
+    </body>
+</html>
